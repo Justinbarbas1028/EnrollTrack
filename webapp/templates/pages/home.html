@@ -1,0 +1,22 @@
+{% extends 'pages/index.html' %}
+
+{% block content %}
+{% include 'pages/navbar.html' %}
+<main>
+    <section class="header container">
+        <div>
+            <h1 class="home_header">"Empowering minds through education."</h1>
+
+            <img src="../static/images/book.png" alt="">
+            <div>
+                <a href="{% url 'login' %}"><button class="btn">Enroll Now!</button></a>
+            </div>
+        </div>
+    </section>
+</main>
+
+{% for abc in students %}
+{{abc.name}}
+{% endfor %} 
+
+{% endblock %}

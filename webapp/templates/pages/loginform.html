@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Enrollment Form</title>
+  <link rel="stylesheet" href="{% static 'css/loginform.css' %}">
+  <link rel="icon" type="image/x-icon" href="{% static 'images/CG.png' %}">
+</head>
+
+<body class="loginbody">
+  {% include 'pages/navbar.html' %}
+  <div id="event-registration">
+
+      <form id="event-registration-form" method="POST" action="{% url 'login' %}">
+        {% csrf_token %}
+        <fieldset class="loginformFieldset">
+          <h3>Personal Information</h3>
+          <label for="id_name">Full Name</label>
+          {{ form.name }}
+          <label for="id_age">Age</label>
+          {{ form.age }}
+          <label for="id_phone">Contact Number</label>
+          {{ form.phone }}
+          <label for="id_email">Email</label>
+          {{ form.email }}
+
+          <!-- Program Selection -->
+          <label for="id_program">Program</label>
+          {{ form.program }}
+
+          <!-- Course Selection -->
+          <label for="id_course">Course</label>
+          {{ form.course }}
+        </fieldset>
+        <button type="submit" class="loginbuttons">Submit Form</button>
+      </form>
+
+    </div> 
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

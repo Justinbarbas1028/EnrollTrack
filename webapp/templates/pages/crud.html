@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud Table</title>
+    <link rel="stylesheet" href="{% static 'css/crud.css' %}">
+</head>
+<body>
+    <h2>Enroll Track</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Age</th>
+                <th>Phone</th>
+                <th>Program</th>
+                <th>Courses</th>
+                <th>Teacher</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr id="student-{{ student.id }}">
+                <td>{{ student.name }}</td>
+                <td>{{ student.email }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.phone }}</td>
+                <td>{{ student.program }}</td>
+                <td>
+                    <ul>
+                        {% for enrollment in student.enrollments.all %}
+                        <li>{{ enrollment.course.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for enrollment in student.enrollments.all %}
+                        <li>{{ enrollment.course.teacher.name }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <a href="#" class="edit-btn">Edit</a>
+                    <a href="#" class="delete-btn">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- The Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Edit User</h3>
+            <div class="form-container">
+                <form id="editUserForm">
+                    <input type="hidden" id="editRowIndex" value="">
+                    <label for="editName">Name:</label>
+                    <input type="text" id="editName" name="editName" required>
+                    <label for="editEmail">Email:</label>
+                    <input type="email" id="editEmail" name="editEmail" required>
+                    <label for="editAge">Age:</label>
+                    <input type="text" id="editAge" name="editAge" required>
+                    <label for="editPhone">Phone:</label>
+                    <input type="text" id="editPhone" name="editPhone" required>
+                    <label for="editProgram">Program:</label>
+                    <select id="editProgram" name="editProgram">
+                        {% for program in programs %}
+                        <option value="{{ program.id }}">{{ program.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="editCourses">Courses:</label>
+                    <select id="editCourses" name="editCourses">
+                        {% for course in courses %}
+                        <option value="{{ course.id }}">{{ course.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <label for="editTeacher">Teacher:</label>
+                    <select id="editTeacher" name="editTeacher">
+                        {% for teacher in teachers %}
+                        <option value="{{ teacher.id }}">{{ teacher.name }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="submit" value="Save">
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/crud.js' %}"></script>

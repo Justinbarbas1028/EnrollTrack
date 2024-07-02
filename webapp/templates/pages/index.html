@@ -1,0 +1,21 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll Track</title>
+    <link rel="stylesheet" type="text/css" href="{% static '/css/style.css' %}">
+    <link rel="icon" type="image/x-icon" href="../static/images/CG.png">   
+</head>
+<body>
+    
+    {% block content %}
+
+    {% include 'pages/navbar.html' %}
+
+    {% endblock %}
+   
+    <script src="{% static '/js/script.js' %}"></script>
+</body>
+</html>

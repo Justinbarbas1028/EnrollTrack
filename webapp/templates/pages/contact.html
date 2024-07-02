@@ -1,0 +1,32 @@
+{% load static %}
+<title>Contact Us</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<body class="cform">
+{% include 'pages/navbar.html' %}
+
+<div class="conContainer">
+    <form class="conForm">
+        <h1>Contact Form</h1>
+        <ul>
+            <li>
+                <label for="name"><span>Name <span class="required-star">*</span></span></label>
+                <input type="text" id="name" name="user_name">
+            </li>
+            <li>
+                <label for="mail"><span>Email <span class="required-star">*</span></span></label>
+                <input type="email" id="mail" name="user_email">
+            </li>
+            <li>
+                <label for="msg"><span>Message</span></label>
+                <textarea id="msg" rows="4" cols="50" name="user_message"></textarea>
+            </li>
+            <li>
+                <input type="submit" value="Submit">
+            </li>
+        </ul>
+    </form>
+</div>
+
+<script src="{% static 'js/script.js' %}"></script>
+</body>
